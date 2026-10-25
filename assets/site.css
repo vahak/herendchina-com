@@ -1,0 +1,160 @@
+/* Herend China Guide by Paris Tableware (herendchina.com) - one stylesheet for every page.
+   Calm, quiet layout: navy text on warm off-white, serif headings, mobile first. */
+
+:root {
+  --ink: #21304D;          /* navy text */
+  --ink-soft: #4a5672;     /* secondary text */
+  --paper: #faf8f4;        /* warm off-white background */
+  --paper-deep: #f2eee6;   /* panels, table headers */
+  --line: #e2dccf;         /* hairlines */
+  --gold: #9c7f4e;         /* thin decorative rules only */
+  --gutter: 16px;
+  --measure: 44rem;        /* comfortable reading width */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, .table-wrap:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.25; letter-spacing: 0.005em; margin: 0 0 0.6em; }
+h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); margin-top: 0.2em; }
+h2 { font-size: clamp(1.4rem, 4.2vw, 1.75rem); margin-top: 2.2em; }
+h3 { font-size: 1.2rem; margin-top: 1.6em; }
+p, ul, ol { margin: 0 0 1em; }
+ul, ol { padding-left: 1.3em; }
+li { margin-bottom: 0.35em; }
+strong { font-weight: 600; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; background: var(--paper-deep); padding: 0.05em 0.3em; border-radius: 3px; overflow-wrap: anywhere; }
+
+.wrap { width: 100%; max-width: 72rem; margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Skip link */
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: 0.5em 1em; z-index: 10; }
+.skip-link:focus { left: var(--gutter); top: var(--gutter); }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--line); background: var(--paper); }
+.site-header .wrap { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1rem; padding-bottom: 0.75rem; }
+.site-name { font-family: var(--serif); font-size: 1.3rem; text-decoration: none; letter-spacing: 0.01em; }
+.site-name span { color: var(--ink-soft); font-size: 0.95rem; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.15rem 1.1rem; }
+.site-nav li { margin: 0; }
+.site-nav a { display: inline-block; padding: 0.3rem 0; font-size: 0.95rem; text-decoration: none; border-bottom: 1px solid transparent; }
+.site-nav a:hover { border-bottom-color: var(--ink); }
+.site-nav a[aria-current="page"], .site-nav a.in-section { border-bottom-color: var(--gold); }
+
+@media (min-width: 900px) {
+  .site-header .wrap { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 2rem; }
+}
+
+/* Main column */
+main { display: block; padding: 0 var(--gutter) 3rem; }
+.page { max-width: var(--measure); margin: 0 auto; }
+
+.breadcrumb { margin: 1.25rem 0 0; font-size: 0.85rem; color: var(--ink-soft); }
+.breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+.breadcrumb li { margin: 0; }
+.breadcrumb li + li::before { content: "/"; margin: 0 0.5em; color: var(--line); }
+.breadcrumb a { color: var(--ink-soft); }
+
+.page > h1:first-child, .breadcrumb + h1 { margin-top: 1rem; }
+.page > h1:first-child { margin-top: 2rem; }
+.page h1::after { content: ""; display: block; width: 3rem; height: 1px; background: var(--gold); margin-top: 0.6em; }
+
+.lede, .answer { font-size: 1.15rem; line-height: 1.6; }
+.updated, .last-updated, .last-reviewed, .byline, .source { font-size: 0.88rem; color: var(--ink-soft); }
+
+/* Figures and galleries */
+figure { margin: 1.75rem 0; }
+figure img { width: 100%; max-width: 30rem; background: #fff; border: 1px solid var(--line); }
+figcaption { font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.5rem; max-width: 30rem; }
+.hero-image img { max-width: 34rem; }
+
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.75rem 0; }
+.gallery figure { margin: 0; }
+.gallery figure img, .gallery figcaption { max-width: none; }
+@media (min-width: 700px) { .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* A gallery of exactly 4 photos stays 2 x 2, so no photo sits alone on a second row */
+@media (min-width: 700px) { .gallery:has(> figure:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* A gallery of exactly 2 photos fills the column width instead of leaving an empty third slot */
+@media (min-width: 700px) { .gallery:has(> figure:nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Start-here cards on the home page */
+.cards { list-style: none; padding: 0; margin: 1.25rem 0; display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+.cards li { margin: 0; background: #fff; border: 1px solid var(--line); padding: 1rem 1.1rem; }
+.cards h3 { margin: 0 0 0.35rem; font-size: 1.15rem; }
+.cards p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Tables scroll inside their own box on small screens, never the page */
+.table-wrap { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.25rem 0 1.5rem; border: 1px solid var(--line); background: #fff; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; line-height: 1.45; }
+.table-wrap table { min-width: 32rem; }
+/* 2- and 3-column tables fit a phone screen; only 4+ columns scroll sideways */
+.table-wrap table:not(:has(tr > :nth-child(4))) { min-width: 0; }
+caption { caption-side: top; text-align: left; padding: 0.75rem 0.85rem; font-size: 0.85rem; color: var(--ink-soft); }
+th, td { text-align: left; vertical-align: top; padding: 0.55rem 0.85rem; border-top: 1px solid var(--line); }
+thead th, thead td { background: var(--paper-deep); font-weight: 600; border-top: 0; }
+tbody th { font-weight: 600; }
+
+/* The one "Shop at Paris Tableware" block per page */
+.shop-cta { margin: 2.75rem 0 2rem; padding: 1.5rem 1.25rem; background: #fff; border: 1px solid var(--line); border-top: 2px solid var(--gold); }
+.shop-cta h2 { margin-top: 0; font-size: 1.4rem; }
+.shop-cta p:last-child { margin-bottom: 0; }
+.shop-cta .button, .shop-cta-button, .shop-cta__button, .cta-button {
+  display: inline-block; background: var(--ink); color: var(--paper); text-decoration: none;
+  padding: 0.75rem 1.3rem; font-size: 1rem; letter-spacing: 0.02em; border-radius: 2px; line-height: 1.3;
+}
+.shop-cta .button:hover, .shop-cta-button:hover, .shop-cta__button:hover, .cta-button:hover { background: #2c3e63; }
+
+/* FAQ and sources */
+.faq h3 { font-size: 1.1rem; margin-top: 1.4em; }
+.sources { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--ink-soft); }
+.sources h2 { font-size: 1.1rem; margin-top: 0; }
+.sources ul { padding-left: 1.1em; }
+.sources a { color: var(--ink-soft); overflow-wrap: anywhere; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); background: var(--paper-deep); font-size: 0.9rem; color: var(--ink-soft); }
+.site-footer .wrap { padding-top: 1.75rem; padding-bottom: 2rem; }
+.site-footer p { margin: 0 0 0.7em; max-width: var(--measure); }
+.site-footer .footer-owner { color: var(--ink); }
+.site-footer a { color: var(--ink); }
+.footer-nav ul { list-style: none; margin: 1rem 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; }
+.footer-nav li { margin: 0; }
+.copyright { font-size: 0.8rem; }
+
+/* Pattern cards with a photo (home page) */
+.cards--photo li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+.cards--photo img { width: 72px; height: 72px; border: 1px solid var(--line); background: #fff; }
+.cards--photo h3 a { text-decoration: none; }
+.cards--photo h3 a:hover { text-decoration: underline; }
+
+.note { font-size: 0.92rem; color: var(--ink-soft); border-left: 2px solid var(--gold); padding-left: 0.8rem; }
+
+/* 404 */
+.not-found ul { padding-left: 1.2em; }
+
+@media print {
+  .site-nav, .skip-link, .shop-cta .button, .shop-cta-button, .shop-cta__button, .cta-button { display: none; }
+  body { background: #fff; }
+}

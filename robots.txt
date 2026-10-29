@@ -1,4 +1,29 @@
 User-agent: *
 Allow: /
 
+# AI assistants and AI search, named explicitly
+User-agent: meta-webindexer
+User-agent: meta-externalagent
+User-agent: meta-externalfetcher
+User-agent: Meta-ExternalAds
+User-agent: facebookexternalhit
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: OAI-AdsBot
+User-agent: Google-Extended
+User-agent: bingbot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://herendchina.com/sitemap.xml
